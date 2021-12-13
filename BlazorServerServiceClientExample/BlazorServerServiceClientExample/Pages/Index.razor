@@ -3,8 +3,18 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Hello, @UserId!</h1>
 
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+  protected Guid UserId { get; set; }
+
+  protected override async Task OnInitializedAsync()
+  {
+    Microsoft.Crm.Sdk.Messages.WhoAmIResponse whoAmIResponse = (Microsoft.Crm.Sdk.Messages.WhoAmIResponse)this.ServiceClientContext.ServiceClient.Value.Execute(new Microsoft.Crm.Sdk.Messages.WhoAmIRequest());
+    UserId = whoAmIResponse.UserId;
+  }
+}

@@ -6,14 +6,8 @@
   {
     public ServiceClientContext()
     {
-      string dataverseConnectionString = "<connection string here>";
-      this.ServiceClient = new ServiceClient(dataverseConnectionString);
-      if (!this.ServiceClient.IsReady)
-      {
-        throw this.ServiceClient.LastException;
-      }
     }
 
-    private ServiceClient ServiceClient { get;set; }
-}
+    public Lazy<ServiceClient> ServiceClient { get; } = new Lazy<ServiceClient>(() => new ServiceClient("<connection string here>"));
+  }
 }
