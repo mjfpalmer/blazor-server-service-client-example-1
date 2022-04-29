@@ -14,6 +14,6 @@
       }
     }
 
-    private ServiceClient ServiceClient { get;set; }
-}
+    private ServiceClient ServiceClient { get; set; }
+  }
 }
